@@ -1,0 +1,21 @@
+{
+  "name": "Is your birth special",
+  "short_name": "Birth Special",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "background_color": "#06092B",
+  "description": "App to show events that happened on your birthday",
+  "display": "fullscreen",
+  "start_url": "/",
+  "theme_color": "#06092B"
+}
