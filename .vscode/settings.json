@@ -1,0 +1,9 @@
+{
+  "window.zoomLevel": 0,
+  "editor.fontSize": 18,
+  "terminal.integrated.fontSize": 16,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+  }
+}
