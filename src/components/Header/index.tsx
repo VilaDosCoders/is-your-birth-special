@@ -1,12 +1,14 @@
+import * as S from '../Main/styles'
+
 export default function Header() {
   return (
     <main>
-      <h1>Is your birthday special?</h1>
-      <p>
+      <S.HeaderTitle>Is your birthday special?</S.HeaderTitle>
+      <S.HeaderDescription>
         put in your birthday date and discover if something special was
         happening
-      </p>
-      <p>or not</p>
+      </S.HeaderDescription>
+      <S.HeaderDescription>or not</S.HeaderDescription>
     </main>
   )
 }

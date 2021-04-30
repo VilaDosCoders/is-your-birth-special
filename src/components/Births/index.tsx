@@ -1,7 +1,10 @@
+import * as S from '../Main/styles'
+
 interface BirthsComponentTypes {
   births: Births | undefined
   showBirths: boolean
 }
+
 
 export default function BirthsComponent({
   births,
@@ -9,26 +12,26 @@ export default function BirthsComponent({
 }: BirthsComponentTypes) {
   function birthsDescription() {
     return births?.births?.map((item: BirthsEntity, index) => (
-      <span key={index}>
+      <S.ContentDescription key={index}>
         {' '}
         {item.description}
         <br />
         <br />
-      </span>
+      </S.ContentDescription>
     ))
   }
 
   return (
     <>
       {showBirths && (
-        <div>
-          <span>
+        <S.ContentWrapper>
+          <S.ContentTitle>
             These were the <span>Births</span> of {births?.date}
             <br />
             <br />
-          </span>
+          </S.ContentTitle>
           <div>{birthsDescription()}</div>
-        </div>
+        </S.ContentWrapper>
       )}
     </>
   )

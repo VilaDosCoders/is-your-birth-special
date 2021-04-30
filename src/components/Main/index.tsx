@@ -1,4 +1,4 @@
-import styles from '../../../styles/Home.module.css'
+import * as S from './styles'
 import { useState } from 'react'
 import EventsComponent from '../Events'
 import BirthsComponent from '../Births'
@@ -60,26 +60,29 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.container}>
+    <S.Wrapper>
       <Header />
       <form onSubmit={handleSubmit}>
-        <div>
-          <select onChange={handleMonthChange} value={month}>
+        <S.FormSelectWrapper>
+        <S.Label htmlFor="months">Choose a Month:</S.Label>
+          <S.Select onChange={handleMonthChange} id="months" value={month}>
             <Months />
-          </select>
+          </S.Select>
 
-          <select onChange={handleDayChange} value={day}>
+          <S.Label htmlFor="days">Choose a day:</S.Label>
+          <S.Select onChange={handleDayChange} value={day} id="days">
             <Days />
-          </select>
-        </div>
+          </S.Select>
+        </S.FormSelectWrapper>
         <div>
           <button type="submit">Tell me if my birthday mean something</button>
         </div>
       </form>
-
-      <EventsComponent events={events} showEvents={showEvents} />
-      <BirthsComponent births={births} showBirths={showBirths} />
-      <DeathsComponent deaths={deaths} showDeaths={showDeaths} />
-    </div>
+      <S.ContentDiv>
+        <EventsComponent events={events} showEvents={showEvents} />
+        <BirthsComponent births={births} showBirths={showBirths} />
+        <DeathsComponent deaths={deaths} showDeaths={showDeaths} />
+      </S.ContentDiv>
+    </S.Wrapper>
   )
 }

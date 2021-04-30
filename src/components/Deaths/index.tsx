@@ -1,3 +1,5 @@
+import * as S from '../Main/styles'
+
 interface DeathsComponentTypes {
   deaths: Deaths | undefined
   showDeaths: boolean
@@ -9,26 +11,26 @@ export default function DeathsComponent({
 }: DeathsComponentTypes) {
   function deathsDescription() {
     return deaths?.deaths?.map((item: DeathsEntity, index) => (
-      <span key={index}>
+      <S.ContentDescription key={index}>
         {' '}
         {item.description}
         <br />
         <br />
-      </span>
+      </S.ContentDescription>
     ))
   }
 
   return (
     <>
       {showDeaths && (
-        <div>
-          <span>
+        <S.ContentWrapper>
+          <S.ContentTitle>
             These were the <span>Deaths</span> of {deaths?.date}
             <br />
             <br />
-          </span>
+          </S.ContentTitle>
           <div>{deathsDescription()}</div>
-        </div>
+        </S.ContentWrapper>
       )}
     </>
   )
