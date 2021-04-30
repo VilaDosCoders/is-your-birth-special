@@ -64,7 +64,7 @@ export default function Home() {
       <Header />
       <form onSubmit={handleSubmit}>
         <S.FormSelectWrapper>
-        <S.Label htmlFor="months">Choose a Month:</S.Label>
+          <S.Label htmlFor="months">Choose a Month:</S.Label>
           <S.Select onChange={handleMonthChange} id="months" value={month}>
             <Months />
           </S.Select>
@@ -75,7 +75,9 @@ export default function Home() {
           </S.Select>
         </S.FormSelectWrapper>
         <div>
-          <button type="submit">Tell me if my birthday mean something</button>
+          <S.SubmitButton type="submit">
+            Tell me if my birthday mean something
+          </S.SubmitButton>
         </div>
       </form>
       <S.ContentDiv>

@@ -5,7 +5,6 @@ interface BirthsComponentTypes {
   showBirths: boolean
 }
 
-
 export default function BirthsComponent({
   births,
   showBirths
