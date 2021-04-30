@@ -13,6 +13,9 @@ export const ContentDiv = styled.div`
   display: flex;
   flex-direction: row;
   text-align: left;
+  @media screen and (max-width: 768px){
+    flex-direction: column;
+  }
 `
 export const FormSelectWrapper = styled.div`
   margin: 2rem;
