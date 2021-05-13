@@ -1,85 +1,46 @@
-import styles from '../../../styles/Home.module.css'
-import { useState } from 'react'
-import EventsComponent from '../Events'
-import BirthsComponent from '../Births'
-import DeathsComponent from '../Deaths'
-import Days from '../../utils/Days'
-import Header from '../Header'
-import Months from '../../utils/Months'
+import BirthEvents from 'components/Events'
+import React, { useState, useCallback } from 'react'
+import DatePicker from 'react-datepicker'
 
-export default function Home() {
-  const [month, setMonth] = useState('1') // The input starts with Jan selected
-  const [day, setDay] = useState('1') // The input starts with day 1 selected
-  const [events, setEvents] = useState<Events>()
-  const [births, setBirths] = useState<Events>()
-  const [deaths, setDeaths] = useState<Events>()
-  const [showEvents, setShowEvents] = useState(false)
-  const [showBirths, setShowBirths] = useState(false)
-  const [showDeaths, setShowDeaths] = useState(false)
+import * as S from './styles'
 
-  function handleMonthChange(e: any) {
-    setMonth(e.target.value)
-  }
-  function handleDayChange(e: any) {
-    setDay(e.target.value)
-  }
+const Main = () => {
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [currentActiveTab, setCurrentActiveTab] = useState<Tabs>('events')
 
-  function handleSubmit(e: any) {
-    e.preventDefault()
-
-    if (month && day) {
-      getEvents(month, day)
-      getBirths(month, day)
-      getDeaths(month, day)
-    }
-  }
-
-  function getEvents(month: string, day: string) {
-    fetch('https://byabbe.se/on-this-day/' + month + '/' + day + '/events.json')
-      .then((response) => response.json())
-      .then((data: Events) => {
-        setEvents(data)
-        setShowEvents(true)
-      })
-  }
-  function getBirths(month: string, day: string) {
-    fetch('https://byabbe.se/on-this-day/' + month + '/' + day + '/births.json')
-      .then((response) => response.json())
-      .then((data: Events) => {
-        setBirths(data)
-        setShowBirths(true)
-      })
-  }
-  function getDeaths(month: string, day: string) {
-    fetch('https://byabbe.se/on-this-day/' + month + '/' + day + '/deaths.json')
-      .then((response) => response.json())
-      .then((data: Events) => {
-        setDeaths(data)
-        setShowDeaths(true)
-      })
-  }
+  const handleActiveTab = useCallback((tabName: Tabs) => {
+    setCurrentActiveTab(tabName)
+  }, [])
 
   return (
-    <div className={styles.container}>
-      <Header />
-      <form onSubmit={handleSubmit}>
-        <div>
-          <select onChange={handleMonthChange} value={month}>
-            <Months />
-          </select>
+    <S.Wrapper>
+      <S.Title>Is your birthday special?</S.Title>
+      <S.Description>
+        put in your birthday date and discover if something special was
+        happening or not
+      </S.Description>
+      <DatePicker
+        selected={startDate}
+        locale="en-US"
+        onChange={(date) => setStartDate(date as Date)}
+      />
+      <section>
+        <ul>
+          <li>
+            <button onClick={() => handleActiveTab('events')}>Events</button>
+          </li>
+          <li>
+            <button onClick={() => handleActiveTab('deaths')}>Deaths</button>
+          </li>
+          <li>
+            <button onClick={() => handleActiveTab('births')}>Births</button>
+          </li>
+        </ul>
 
-          <select onChange={handleDayChange} value={day}>
-            <Days />
-          </select>
-        </div>
-        <div>
-          <button type="submit">Tell me if my birthday mean something</button>
-        </div>
-      </form>
-
-      <EventsComponent events={events} showEvents={showEvents} />
-      <BirthsComponent births={births} showBirths={showBirths} />
-      <DeathsComponent deaths={deaths} showDeaths={showDeaths} />
-    </div>
+        {currentActiveTab === 'events' && <BirthEvents startDate={startDate} />}
+      </section>
+    </S.Wrapper>
   )
 }
+
+export default Main

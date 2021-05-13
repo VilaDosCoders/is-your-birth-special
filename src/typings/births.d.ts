@@ -1,40 +1,22 @@
-interface Events {
-  wikipedia: string
+type BirthEventsProps = {
+  startDate: Date | null
+}
+
+type BirthEventsData = {
   date: string
-  events?: EventsEntity[] | null
+  events: Events[]
+  wikipedia: string
 }
 
-interface EventsEntity {
-  year: string
+type Events = {
   description: string
-  wikipedia?: WikipediaEntity[] | null
+  wikipedia: Wikipedia[]
+  year: string
 }
 
-interface WikipediaEntity {
+type Wikipedia = {
   title: string
   wikipedia: string
 }
 
-interface Births {
-  wikipedia: string
-  date: string
-  births?: BirthsEntity[] | null
-}
-
-interface BirthsEntity {
-  year: string
-  description: string
-  wikipedia?: WikipediaEntity[] | null
-}
-
-interface Deaths {
-  wikipedia: string
-  date: string
-  deaths?: BirthsEntity[] | null
-}
-
-interface DeathsEntity {
-  year: string
-  description: string
-  wikipedia?: WikipediaEntity[] | null
-}
+type Tabs = 'events' | 'deaths' | 'births'
